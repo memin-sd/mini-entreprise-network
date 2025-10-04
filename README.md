@@ -54,7 +54,6 @@ Un serveur central (dans le VLAN 30) fournit plusieurs services à toute l’ent
 ## Contenu du dépôt
 - `entreprise.pkt` → fichier Packet Tracer du projet  
 - `config/` → configurations du routeur, switch et ACL  
-- `docs/` → rapport + capture d’écran du réseau  
 - `README.md` → ce fichier d’explication  
 
 ---
@@ -67,3 +66,4 @@ Ce projet m’a permis de mieux comprendre la conception d’un réseau d’entr
 - Sécurité avec ACL  
 
 C’est un premier pas vers l’administration réseau et la cybersécurité.
+
