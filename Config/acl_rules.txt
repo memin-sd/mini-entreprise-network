@@ -1,0 +1,17 @@
+# Règles ACL (Firewall) - Projet Réseau d’Entreprise
+
+! Bloquer VLAN 10 (Employés) vers VLAN 20 (Finance)
+access-list 101 deny ip 192.168.10.0 0.0.0.255 192.168.20.0 0.0.0.255
+
+! Bloquer VLAN 20 (Finance) vers serveur FTP (port 21)
+access-list 101 deny tcp 192.168.20.0 0.0.0.255 host 192.168.30.100 eq 21
+
+! Bloquer VLAN 20 (Finance) vers serveur Mail (SMTP port 25)
+access-list 101 deny tcp 192.168.20.0 0.0.0.255 host 192.168.30.100 eq 25
+
+! Autoriser le reste du trafic (obligatoire, sinon tout est bloqué)
+access-list 101 permit ip any any
+
+! Application de l’ACL sur VLAN 20 (trafic sortant)
+interface fa0/0.20
+ ip access-group 101 out

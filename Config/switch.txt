@@ -1,0 +1,50 @@
+!
+! Configuration du switch
+!
+enable
+configure terminal
+
+hostname Switch
+
+! Création des VLANs
+vlan 10
+ name Employes
+exit
+
+vlan 20
+ name Finance
+exit
+
+vlan 30
+ name Admin
+exit
+
+! Attribution des ports aux VLANs
+! VLAN 10 → Ports Fa0/1 et Fa0/2
+interface range fa0/1 - 2
+ switchport mode access
+ switchport access vlan 10
+exit
+
+! VLAN 20 → Ports Fa0/3 et Fa0/4
+interface range fa0/3 - 4
+ switchport mode access
+ switchport access vlan 20
+exit
+
+! VLAN 30 → Ports Fa0/5 et Fa0/6
+interface range fa0/5 - 6
+ switchport mode access
+ switchport access vlan 30
+exit
+
+
+! Port de liaison vers le routeur (trunk)
+interface fa0/24
+ switchport mode trunk
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 10,20,30
+exit
+
+end
+write memory
